@@ -58,7 +58,7 @@ class GLWidget(QtOpenGLWidgets.QOpenGLWidget):
         GL.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR)
     
         # load image
-        image = Image.open("exercises/4_3D/bricks.jpg")
+        image = Image.open("4_3D/bricks.jpg")
         img_data = np.array(list(image.getdata()), np.uint8)
         GL.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGB, image.width, image.height, 0, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, img_data)
         GL.glBindTexture(GL.GL_TEXTURE_2D, GL.GL_FALSE)
@@ -69,18 +69,18 @@ class GLWidget(QtOpenGLWidgets.QOpenGLWidget):
         self.vertex_uv_id = GL.glGetAttribLocation(self.program_id, "uv")   
         self.texture_id  = GL.glGetUniformLocation(self.program_id, "bricks")
 
-        vertex_buffer_data = np.array([-1. , -1. ,  1.,
-                                       1. , -1. ,  1.,
-                                       0. ,  1. ,  1.,
+        vertex_buffer_data = np.array([-0.8 , -0.8 ,  0.8,
+                                       0.8 , -0.8 ,  0.8,
+                                       0. ,  0.8 ,  0.8,
                                        0. ,  0.1,  0.,
-                                       -1. , -1. ,  1.,
-                                       1. , -1. ,  1.,
+                                       -0.8 , -0.8 ,  0.8,
+                                       0.8 , -0.8 ,  0.8,
                                        -0. ,  0.1,  0.,
-                                       1. , -1. ,  1.,
-                                       0. ,  1. ,  1.,
+                                       0.8 , -0.8 ,  0.8,
+                                       0. ,  0.8 ,  0.8,
                                        0. ,  0.1,  0.,
-                                       0. ,  1. ,  1.,
-                                       -1. , -1. ,  1.], np.float32)
+                                       0. ,  0.8 ,  0.8,
+                                       -0.8 , -0.8 ,  0.8], np.float32)
         
         uv_buffer_data = np.array([0.5, 1.0, 0.0, 0.0, 0.0, 1.0, 
                                    0.0, 0.0, 0.5, 1.0,  0.0, 1.0,

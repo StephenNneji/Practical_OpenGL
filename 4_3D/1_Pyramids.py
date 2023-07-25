@@ -48,9 +48,9 @@ class GLWidget(QtOpenGLWidgets.QOpenGLWidget):
         self.vertex_position_id = GL.glGetAttribLocation(self.program_id, "position")
         self.vertex_colour_id = GL.glGetAttribLocation(self.program_id, "vertexColour")
         vertex_buffer_data = np.array([-0.0, 0.1, 0.0, 
-                                       -1.0, -1.0, 1.0, 
-                                       1.0, -1.0, 1.0, 
-                                       0.0, 1.0, 1.0], np.float32)
+                                       -0.8, -0.8, 0.8, 
+                                       0.8, -0.8, 0.8, 
+                                       0.0, 0.8, 0.8], np.float32)
         colour_buffer_data = np.array([0.0, 0.0, 0.0, 
                                        1.0, 0.0, 0.0, 
                                        1.0, 1.0, 0.0, 
