@@ -5,8 +5,6 @@ import math
 import numpy as np
 
 eps = 1e-6
-DEFAULT_Z_NEAR = 0.1
-DEFAULT_Z_FAR = 1000.0
 
 
 def look_at(position, target, up_dir=None):
@@ -14,11 +12,11 @@ def look_at(position, target, up_dir=None):
     from a desired position and orientation.
 
     :param position: position of camera
-    :type position: Vector3
+    :type position: np.ndarray
     :param target: point to look at
-    :type target: Vector3
+    :type target: np.ndarray
     :param up_dir: up direction of camera
-    :type up_dir: Union[Vector3, None]
+    :type up_dir: Union[np.ndarray, None]
     :return: 4 x 4 view matrix
     :rtype: np.ndarray
     """
@@ -62,7 +60,15 @@ def look_at(position, target, up_dir=None):
  
 def perspective(fov, aspect, z_near, z_far):
     """Computes the one-point perspective projection matrix of camera
-
+    
+    :param aspect: ratio of the x and y dimension ie x / y
+    :type aspect: float
+    :param fov: field of view for y dimension in degrees
+    :type fov: float
+    :param z_near: the distance from the viewer to the near clipping plane (always positive)
+    :type z_near: float
+    :param z_far: the distance from the viewer to the far clipping plane (always positive).
+    :type z_far: float
     :return: 4 x 4 perspective projection matrix
     :rtype: np.ndarray
     """
@@ -83,9 +89,18 @@ def perspective(fov, aspect, z_near, z_far):
 
 
 def orthographic(fov, aspect, z_near, z_far):
-    """Computes the orthographic projection matrix of camera
+    """Computes the orthographic projection matrix of camera. The camera fov is used to calculate the 
+    ortho dimensions but typically you can specify the size directly see https://registry.khronos.org/OpenGL-Refpages/gl2.1/xhtml/glOrtho.xml
 
-    :return: 4 x 4 perspective projection matrix
+    :param aspect: ratio of the x and y dimension ie x / y
+    :type aspect: float
+    :param fov: field of view for y dimension in degrees
+    :type fov: float
+    :param z_near: the distance from the viewer to the near clipping plane (always positive)
+    :type z_near: float
+    :param z_far: the distance from the viewer to the far clipping plane (always positive).
+    :type z_far: float
+    :return: 4 x 4 orthographic projection matrix
     :rtype: np.ndarray
     """
     projection = np.zeros((4, 4), np.float32)
